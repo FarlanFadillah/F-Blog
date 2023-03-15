@@ -1,0 +1,95 @@
+
+main {
+    padding: 10px;
+    min-height: 100vh;
+    max-width: 200vh;
+    word-wrap: break-word;
+}
+
+.mypree {
+    width: 100%;
+    white-space: pre-wrap;
+    font-size: 20px;
+    padding: 10px;
+}
+.form_content{
+    display: flex;
+    flex-direction: row;
+}
+
+.user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user #home-image-preview{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 3.5em;
+    height: 3.5em;
+    margin-right: 5px;
+}
+
+.form_content input {
+    border: none;
+    color: blue;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.content-box {
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #bff3e7;
+}
+
+.content-box h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.content-box h5 {
+    margin-bottom: 20px;
+}
+
+.content-box p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.content-name {
+    color: white;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+.content-box input[type='submit']{
+    font-family: 'Sono', sans-serif;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.content-box input[type='submit']:hover{
+    color: gray;
+}
+
+.content-box a{
+    text-decoration: none;
+    color: #248683;
+    transition: color 0.3s ease;
+}
+
+.content-box a:hover{
+    color: gray;
+}
+
+.content-box .user p{
+    color: black;
+}
+
+ 

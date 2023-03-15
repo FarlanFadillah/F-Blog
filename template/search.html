@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a href="/home/{{request.user}}" class="nav-link">Home</a>
+    </li>
+</ul>
+
+{% endblock %}
+
+{% block search-bar %}
+<div class="search-bar">
+    <form id="search-form"> 
+      {% csrf_token %}
+      <label for="search_key"><a href="/search/" id="search_pointer"><i class="fa-solid fa-magnifying-glass"></i></a></label>
+      <input type="text" name="search_key" id="search_key">
+    </form>
+  
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<h1>Hasil Pencarian {{search_key}}</h1>
+{% for user in list_user %}
+<div class="content-box">
+    <div class="user">
+        <img id="home-image-preview" src="{{MEDIA_URL}}/images/{{user.image}}">
+        <a href="/profile/{{user.name}}" class='content-name'>{{user.first_name}} {{user.last_name}}</a>
+    </div>
+</div>
+{% empty %}
+
+<div class="content-box">
+    <div class="user">
+        <a class='content-name'>{{search_key}} Tidak Ditemukan</a>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

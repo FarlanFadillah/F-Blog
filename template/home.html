@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+<ul class="navbar-nav">
+  <li class="nav-item">
+    <a id="home_link" href="/home/{{request.user}}" class="nav-link">Home</a>
+  </li>
+  <li class="nav-item">
+    <a href="{{request.user}}/post" class="nav-link">Write</a>
+  </li>
+  <li class="nav-item">
+    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+  </li>
+  <li class="nav-item">
+    <a href="/profile/{{request.user}}" class="nav-link">Profile</a>
+  </li>
+</ul>
+
+{% endblock %}
+
+{% block search-bar %}
+<div class="search-bar">
+  <form id="search-form"> 
+    {% csrf_token %}
+    <label for="search_key"><a href="/search/" id="search_pointer"><i class="fa-solid fa-magnifying-glass"></i></a></label>
+    <input type="text" name="search_key" id="search_key">
+  </form>
+
+</div>
+{% endblock %}
+
+{% block header %}
+<header class="header">
+  <div class="container">
+    <h1>{{request.user.first_name}} {{request.user.last_name}}</h1>
+  </div>
+</header>
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  <h2>Postingan Terbaru</h2>
+  {% for content in contents %}
+  <article>
+    <div class="content-box">
+      <div class="user">
+        <img id="home-image-preview" src="{{MEDIA_URL}}/images/{{content.image}}">
+        <a href="/profile/{{content.name}}" class='content-name'>{{content.first_name}} {{content.last_name}}</a>
+      </div>
+
+
+      <h2>{{content.title}}</h2>
+      <h5>{{content.date}}</h5>
+      <pre class="mypree">{{content.content}}</pre>
+      <br>
+      <div class="comment-btn">
+        <a href="/content/{{content.name}}/{{content.content_id}}" type="submit" class='content-name'>Komentar</a>
+      </div>
+
+
+
+    </div>
+  </article>
+  {% empty %}
+  <article>
+    <div class="content-box">
+      <div class="user">
+        <p class='content-name'>Belum Ada Postingan</p>
+      </div>
+  </article>
+  {% endfor %}
+</main>
+
+
+
+{% endblock %}

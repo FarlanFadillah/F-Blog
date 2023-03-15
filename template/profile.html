@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a href="/home/{{request.user}}" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+        <a href="/home/{{request.user}}/post" class="nav-link">Write</a>
+    </li>
+    <li class="nav-item">
+        <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<main class="profile_main">
+    <div class="profile">
+        {% if is_login %}
+        <form action="/uploadimg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-image">
+                {% if profileimg != False %}
+                <img id="image-preview" src="{{MEDIA_URL}}/images/{{profileimg}}">
+                {% else %}
+                <img id="image-preview" src="{{MEDIA_URL}}/images/default/default-profile.jpg">
+                {% endif %}
+                <label for="image-upload" class="choose-btn">
+                    <i class="fa fa-upload"></i> Choose Photo
+                </label>
+                <input type="file" id="image-upload" name="image" onchange="previewImage(event)">
+                <input type="submit" value="Save" class="upload-btn">
+            </div>
+        </form>
+        {% else %}
+        <div class="profile-image">
+            {% if profileimg != False %}
+            <img id="image-preview" src="{{MEDIA_URL}}/images/{{profileimg}}">
+                {% if already_follow %}
+                <a style="background-color: white;" href="/follow/{{datauser.id}}">Berhenti Mengikuti</a>
+                {% else %}
+                <a style="background-color: blue;" href="/follow/{{datauser.id}}">Ikuti</a>
+                {% endif %}
+            {% else %}
+            <img id="image-preview" src="{{MEDIA_URL}}/images/default/default-profile.jpg">
+            {% if already_follow %}
+                <a style="background-color: white;" href="/follow/{{datauser.id}}">Berhenti Mengikuti</a>
+                {% else %}
+                <a style="background-color: blue;" href="/follow/{{datauser.id}}">Ikuti</a>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        {% endif %}
+        <div class="profile-info">
+            {% if is_login %}
+            <h1>Profil Anda</h1>
+            {% else %}
+            <h1>Profil Penulis</h1>
+            {% endif %}
+            <ul>
+                <li class="profile_list"><pre>Nama   : {{datauser.first_name}} {{datauser.last_name}}  ({{datauser.username}})</pre></li>
+                <li class="profile_list"><pre>Email  : {{datauser.email}}</pre> </li>
+                <li class="profile_list"><pre>Joined : {{datauser.date_joined}}</pre></li>
+                <li class="profile_list"><pre>Website:</pre> <a href="#"></a></li>
+                <!-- <li>Pengikut: <a href="#"></a></li> -->
+            </ul>
+        </div>
+    </div>
+    <section class="profile_section">
+        <h2>Postingan Teratas</h2>
+        {% for content in contents %}
+        <!-- <article class="profile_content">
+            <h3>{{content.title}}</h3>
+            <h5>{{content.date}}</h5>
+            <pre>{{content.content}}</pre>
+            <a href="#">Baca selengkapnya...</a>
+        </article> -->
+        <div class="content-box">
+            <h2>{{content.title}}</h2>
+            <h5>{{content.date}}</h5>
+            <pre class="mypree">{{content.content}}</pre>
+
+            <div class="comment-btn">
+                <a href="/content/{{content.name}}/{{content.content_id}}" type="submit"
+                    class='content-name'>Komentar</a>
+            </div>
+        </div>
+
+        {% empty %}
+        <article>
+            <h3>Belum ada Postingan</h3>
+        </article>
+        {% endfor %}
+    </section>
+</main>
+
+{% endblock %}

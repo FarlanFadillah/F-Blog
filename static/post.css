@@ -1,0 +1,60 @@
+
+section #post_main {
+    padding: 20px;
+}
+
+section #post_main h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.post_container{
+    padding-left: 15px;
+}
+
+.post_container form textarea{
+    background-color: #bff3e7;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    resize: none;
+
+}
+#post_title {
+    width: 100%;
+    font-size: 18px;
+}
+
+#post_content {
+    font-size: 16px;
+    height: 300px;
+    width: 100%;
+}
+
+#post_submit {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Animasi untuk input text */
+input[type="text"]:focus {
+    border: 2px solid #00bcd4;
+    outline: none;
+    transition: border-color 0.15s ease-in-out;
+}
+
+/* Animasi untuk textarea */
+.post_container form textarea:focus {
+    border: 2px solid #00bcd4;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}

@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>F Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1><a href="/home/{{request.user}}">F Blog</a></h1>
+        <p>{{request.user}}</p>
+    </header>
+    <nav>
+        <input type="text" hidden>
+        <ul>
+            <li><a href="/home/{{request.user}}">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="{{request.user}}/post">Write</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="/profile/{{request.user}}">Profile</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <h2>Postingan Terbaru</h2>
+        {% for content in contents %}
+        <article>
+                <h3>{{content.title}}</h3>
+                <pre class="mypree">{{content.content}}</pre>
+                <form class="form_content" action="/profile/{{content.name}}" method="post">
+                    {% csrf_token %}
+                    <input type="text" hidden value="{{content.name}}" name="contentname">
+                    <input type="submit" value="{{content.name}}">
+                </form>
+        </article>
+        {% empty %}
+        <article>
+            <h3>Belum ada Postingan</h3>
+        </article>
+        {% endfor %}
+
+
+
+        <!-- <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article>
+        <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article>
+        <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article>
+        <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article>
+        <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article>
+        <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article>
+        <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article>
+        <article>
+            <h3>Judul Postingan</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor. </p>
+        </article> -->
+    </main>
+    <footer>
+        <p>&copy; {{year.year}} F Blog</p>
+    </footer>
+</body>
+
+</html>

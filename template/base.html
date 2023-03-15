@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link id="favicon" rel="shortcut icon" type="image/x-icon" href="{{MEDIA_URL}}/images/icon/FBlog.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'base.css' %}">
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+  <link rel="stylesheet" href="{% static 'post.css' %}">
+  <link rel="stylesheet" href="{% static 'profile.css' %}">
+  <link rel="stylesheet" href="{% static 'content.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sono&display=swap" rel="stylesheet">
+
+  
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/dd48d783fe.js" crossorigin="anonymous"></script>
+  {% block style %} {% endblock %}
+  <!-- Title -->
+  <title>{{request.user.first_name}} {{request.user.last_name}}</title>
+</head>
+
+<body>
+  <nav class="navbar">
+
+    <div class="container">
+      <div class="logo">
+        <a href="/home/{{request.user}}" class="navbar-brand">Blog {{request.user}}</a>
+      </div>
+      {% block search-bar %}
+      
+      {% endblock %}
+      <div class="navbar-menu">
+
+        {% block navbar %}
+
+        {% endblock %}
+      </div>
+    </div>
+
+  </nav>
+
+  {% block header %}
+
+  {% endblock %}
+  <main class="main">
+    <div class="container">
+      {% block content %} {% endblock %}
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2023 Blog Saya</p>
+    </div>
+  </footer>
+  <!-- JS -->
+  <script src="{% static 'base.js' %}"></script>
+  <script>
+    $(document).on('submit', '#search-form', function (e) {
+      document.getElementById('search_key').value = ''
+      $('#search-form').remove()
+    });
+  </script>
+
+</body>
+
+</html>

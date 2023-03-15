@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Halaman Blog yang Keren</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f2f2f2;
+            color: #444;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .post {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .post h2 {
+            font-size: 30px;
+            margin-top: 0;
+        }
+
+        .post p {
+            line-height: 1.5;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .post-meta span {
+            margin-right: 10px;
+        }
+
+        .post-actions {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .like-btn {
+            background-color: #0066cc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .like-count {
+            margin: 0 10px;
+        }
+
+        .comment-count {
+            color: #888;
+            margin-left: 20px;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+        }
+
+        .comment-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .comment-form textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .comment-form button {
+            background-color: #0066cc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="post">
+            <h2>Judul Postingan Blog</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Phasellus rhoncus elit in
+                nisi elementum, a lacinia odio tristique. In hac habitasse platea dictumst. Sed ut libero eget odio
+                pulvinar consequat.</p>
+            <div class="post-meta">
+                <span>oleh John Doe</span>
+                <span>pada 12 Maret 2023</span>
+            </div>
+            <div class="post-actions">
+                <button class="like-btn">Like</button>
+                <span class="like-count">10</span>
+                <span class="comment-count">5 Komentar</span>
+            </div>
+            <div class="comment-form">
+                <label for="name">Nama</label>
+                <input type="text" id="name" name="name" required>
+                <label for="comment">Komentar</label>
+                <textarea id="comment" name="comment" required></textarea>
+                <button type="submit">Kirim</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

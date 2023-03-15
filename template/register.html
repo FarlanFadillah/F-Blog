@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <h2>Register Form</h2>
+
+            {% for i in messages %}
+                <div class="warning"><p>{{i}}</p></div>
+            {% endfor %}
+
+            <div class="inputBox">
+                <input type="text" name="username" required placeholder="" value="">
+                <label>Username</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="first_name" required placeholder="" value="">
+                <label>First Name</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="last_name" required placeholder="" value="">
+                <label>Last Name</label>
+            </div>
+            <div class="inputBox">
+                <input type="email" name="email" required placeholder="" value="">
+                <label>Email</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required placeholder="" value="">
+                <label>Password</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password2" required placeholder="" value="">
+                <label>Repeat Password</label>
+            </div>
+            <div class="button">
+                <input type="submit" value="Register">
+                <a href="{% url 'login' %}" class="login">Login</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

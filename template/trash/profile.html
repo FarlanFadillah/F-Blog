@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>Profil Blogger</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/{{request.user}}">Beranda</a></li>
+                <li><a href="#">Profil</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="profile">
+            {% if is_login %}
+            <form action="/uploadimg" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="profile-image">
+                    {% if profileimg != False %}
+                    <img id="image-preview" src="{{MEDIA_URL}}/images/{{profileimg}}">
+                    {% else %}
+                    <img id="image-preview" src="{{MEDIA_URL}}/images/default/default-profile.jpg">
+                    {% endif %}
+                    <label for="image-upload" class="choose-btn">
+                        <i class="fa fa-upload"></i> Choose Photo
+                    </label>
+                    <input type="file" id="image-upload" name="image">
+                    <input type="submit" value="Upload" class="upload-btn">
+                </div>
+            </form>
+            {% else %}
+            <div class="profile-image">
+                {% if profileimg != False %}
+                <img id="image-preview" src="{{MEDIA_URL}}/images/{{profileimg}}">
+                {% else %}
+                <img id="image-preview" src="{{MEDIA_URL}}/images/default/default-profile.jpg">
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="profile-info">
+                {% if is_login %}
+                <h1>Profil Anda</h1>
+                {% else %}
+                <h1>Profil Penulis</h1>
+                {% endif %}
+                <ul>
+                    <li>Nama: {{datauser.first_name}} {{datauser.last_name}}</li>
+                    <li>Email: {{datauser.email}}</li>
+                    <li>Joined: {{datauser.date_joined}}</li>
+                    <li>Website: <a href="#"></a></li>
+                    <!-- <li>Pengikut: <a href="#"></a></li> -->
+                </ul>
+            </div>
+        </div>
+        <section>
+            <h2>Postingan Teratas</h2>
+            {% for content in contents %}
+            <article>
+                <h3>{{content.title}}</h3>
+                <h5>{{content.date}}</h5>
+                <p>{{content.content}}</p>
+                <a href="#">Baca selengkapnya...</a>
+            </article>
+            {% empty %}
+            <article>
+                <h3>Belum ada Postingan</h3>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Profil Blogger</p>
+    </footer>
+</body>
+
+</html>

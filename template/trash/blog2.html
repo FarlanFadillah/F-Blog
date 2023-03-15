@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blog Keren</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        article {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+
+        .post-info {
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .author {
+            margin-right: 10px;
+        }
+
+        .post-content {
+            line-height: 1.5;
+        }
+
+        .post-actions {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .like-btn {
+            background-color: #0066cc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .like-count {
+            margin: 0 10px;
+        }
+
+        .comment-count {
+            color: #888;
+            margin-left: 20px;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+        }
+
+        .comment-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .comment-form textarea {
+            height: 100px;
+        }
+
+        .comment-form button {
+            background-color: #0066cc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Blog Keren</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Kategori</a></li>
+                <li><a href="#">Tentang</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <header>
+                <h2>Judul Postingan Pertama</h2>
+                <div class="post-info">
+                    <span class="author">Oleh: John Doe</span>
+                    <span class="date">Tanggal Posting: 12 Maret 2023</span>
+                </div>
+            </header>
+            <div class="post-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at feugiat lorem. Donec dignissim
+                    faucibus ligula id viverra. Praesent auctor ante libero, eu gravida mauris efficitur vitae. Sed ac
+                    velit eget magna volutpat dignissim vel vel lacus. Sed eget hendrerit velit.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at feugiat lorem. Donec dignissim
+                    faucibus ligula id viverra. Praesent auctor ante libero, eu gravida mauris efficitur vitae. Sed ac
+                    velit eget magna volutpat dignissim vel vel lacus. Sed eget hendrerit velit.</p>
+            </div>
+            <footer>
+                <div class="post-actions">
+                    <button class="like-btn">Like</button>
+                    <span class="like-count">100</span>
+                    <span class="comment-count">50 Komentar</span>
+                </div>
+                <form class="comment-form">
+                    <label for="comment">Komentar:</label>
+                    <textarea id="comment" name="comment"></textarea>
+                    <button type="submit">Kirim Komentar</button>
+                </form>
+            </footer>
+        </article>
+    </main>
+    <footer>
+        <p>&copy; 2023 Blog Keren</p>
+    </footer>
+</body>
+
+</html>

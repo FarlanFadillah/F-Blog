@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Web</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            font-weight: bold;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-color: #f7f7f7;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background-color: #ff9800;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #f57c00;
+        }
+
+        /* Featured Posts Section Styles */
+        .featured-posts {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .featured-posts h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .post-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .post-card {
+            flex-basis: calc(33.33% - 20px);
+            margin-bottom: 40px;
+        }
+
+        .post-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .post-card h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .post-card p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Blog Web</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to our blog!</h2>
+            <p>Find the latest news, tips and insights about web development.</p>
+            <a href="#" class="btn-primary">Read More</a>
+        </div>
+    </section>
+
+    <section class="featured-posts">
+        <div class="container">
+            <h2>Featured Posts</h2>
+            <div class="post-grid">
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Post Image">
+                    <h3>Post Title</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                    <a href="#" class="btn-primary">Read More</a>
+                </div>
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Post Image">
+                    <h3>Post Title</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                    <a href="#" class="btn-primary">Read More</a>
+                </div>
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Post Image">
+                    <h3>Post Title</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                    <a href="#" class="btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Blog Web. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

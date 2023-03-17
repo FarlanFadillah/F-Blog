@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
+from django.contrib.auth import authenticate, login
 from django.db.models import Count
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -45,6 +46,8 @@ def home(request, unique):
                     image = ProfileImg.objects.get(user_id = content.writer_id).image,
                     content_id= content.id
                     )]
+                
+        user_content = sorted(user_content, key=lambda x: x.date, reverse=True)
         return render(request, 'home.html', {
             'contents':user_content,
             'date':date_now 
@@ -127,7 +130,7 @@ def post(request, unique):
             messages.info(request, 'Error!! No content to post')
             return redirect(f'/home/{request.user}/post')
     else:
-        return render(request, 'post.html')  
+        return render(request, 'post.html', {'editing':False})  
 def profile(request, username):
     have_profile = None
     user_content = []
@@ -153,8 +156,8 @@ def profile(request, username):
                 title = content.title,
                 content_id = content.id 
                 )]
-            if User.objects.get(id = content.writer_id).username == str(request.user):
-                is_login = True
+
+        user_content = sorted(user_content, key=lambda x: x.date, reverse=True)
         return render(request, 'profile.html', {'datauser':data_user, 'contents':user_content, 'is_login':is_login, 'profileimg':image, 'already_follow' : already_follow})
     else:
         data_user = User.objects.get(username = str(request.user))
@@ -175,6 +178,7 @@ def profile(request, username):
                 title = content.title,
                 content_id = content.id 
                 )]
+        user_content = sorted(user_content, key=lambda x: x.date, reverse=True)
         return render(request, 'profile.html', {'datauser':data_user, 'contents':user_content, 'is_login':True, 'profileimg':image})
 def uploadimg(request):
     if request.method == 'POST' and request.FILES.get('image'):
@@ -261,7 +265,6 @@ def comment(request, username, id):
             'comments': comments,
             'me':str(request.user)
         })
-@csrf_exempt
 def search(request, keyword):
     
     list_username = []
@@ -335,6 +338,75 @@ def follow(request, followed_id):
 
     username = User.objects.get(id = followed_id).username
     return redirect(f'/profile/{username}')
+def edit(request, content_id):
+
+    if request.method == 'POST':
+
+        new_content = request.POST.get('content')
+        new_title = request.POST.get('title')
+
+        old_content = Content.objects.get(id = content_id)
+        old_content.content = new_content
+        old_content.title = new_title
+        old_content.save()
+
+        return redirect(f'/profile/{request.user}')
+
+    else:
+        content = Content.objects.get(id = content_id)
+        if request.user.id == content.writer_id:
+            return render(request, 'post.html', {'content':content, 'editing':True})
+        else:
+            return HttpResponseForbidden()
+def delete(request, content_id):
+    old_content = Content.objects.get(id = content_id)
+    if request.user.id == old_content.writer_id:
+        old_content.delete()
+        return redirect(f'/profile/{request.user}')
+    else:
+        return HttpResponseForbidden()
+def setting(request):
+
+    if request.method == 'POST':
+        new_username = request.POST['username']
+        new_email = request.POST['email']
+        new_first_name = request.POST['first_name']
+        new_last_name = request.POST['last_name']
+
+        old_profile = User.objects.get(id = request.user.id)
+        old_profile.username = new_username
+        old_profile.first_name = new_first_name
+        old_profile.last_name = new_last_name
+        old_profile.email = new_email
+
+        old_profile.save()
+
+        return redirect(f'/profile/{new_username}')
+    else:
+        foto_profile = ProfileImg.objects.get(user_id = request.user.id).image
+        data_user = User.objects.get(id = request.user.id)
+
+        return render(request, 'settings.html', {'data_user':data_user, 'foto_profile':foto_profile})
+def change_password(request):
+    if request.method == 'POST':
+        old_password = request.POST['old_password']
+        new_password = request.POST['new_password']
+        new_password2 = request.POST['new_password2']
+
+        my_user = authenticate(username=request.user.username, password=old_password)
+        if my_user is not None and new_password == new_password2:
+
+            my_user.set_password(new_password)
+            my_user.save()
+
+            new_user = authenticate(username=request.user.username, password=new_password)
+            auth.login(request, new_user)
+
+            return redirect('/setting')
+        else:
+            return HttpResponseForbidden()
+
+
 class UserContents():
     def __init__(self, name='', content='', date='', title='', content_id=0, first_name = '', last_name = '', image = 'default/default-profile.jpg', is_follow = False) -> None:
         self.name = name

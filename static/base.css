@@ -64,6 +64,7 @@ a{
   padding: 5px;
   height: 100px;
   padding-left: 20px;
+  box-shadow: 0px 1px 50px rgb(94, 94, 94);
 }
 .navbar .container{
   display: flex;
@@ -72,7 +73,9 @@ a{
   align-items: first baseline;
   padding-top: 25px;
 }
-
+.navbar .container .logo a{
+  text-transform: capitalize;
+}
 .navbar-menu{
   position: relative;
   right: 0;
@@ -171,6 +174,10 @@ a{
  color: white;
 }
 
+.content-name i{
+  font-size: 25px;
+}
+
 
 
 /* Header */
@@ -211,5 +218,4 @@ a{
   font-weight: 500;
   color: var(--text-color);
 }
-
 

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+
+{% block navbar %}
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a href="/home/{{request.user}}" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+        <a href="/profile/{{request.user}}" class="nav-link">Profile</a>
+    </li>
+
+</ul>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="data-user">
+    <form action="/uploadimg" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="foto-profile">
+            <img id="image-profile" src="{{MEDIA_URL}}/images/{{foto_profile}}">
+            <label for="image-upload" class="choose-btn">
+                <i class="fa fa-upload"></i> Choose Photo
+            </label>
+            <input type="file" id="image-upload" name="image" onchange="previewImage2(event)">
+            <input hidden type="submit" value="Save" class="upload-btn" id="save-btn">
+        </div>
+    </form>
+    <div class="data-profile">
+        <form action="/setting" method="post">
+            {% csrf_token %}
+            <h2>Edit Your Profile</h2>
+
+            {% for i in messages %}
+            <div class="warning">
+                <p>{{i}}</p>
+            </div>
+            {% endfor %}
+
+            <div class="inputBox">
+                <label for="username">Username</label>
+                <input type="text" name="username" required placeholder="" value="{{data_user.username}}" id="username">
+
+            </div>
+            <div class="inputBox">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" required placeholder="" value="{{data_user.first_name}}"
+                    id="first_name">
+
+            </div>
+            <div class="inputBox">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" required placeholder="" value="{{data_user.last_name}}"
+                    id="last_name">
+
+            </div>
+            <div class="inputBox">
+                <label for="email">Email</label>
+                <input type="email" name="email" required placeholder="" value="{{data_user.email}}" id="email">
+
+            </div>
+            <!-- <div class="inputBox">
+                <label for="password">Password</label>
+                <input type="password" name="password" required placeholder="" value="{{data_user.password}}" id="password">
+               
+            </div>
+            <div class="inputBox">
+                <label for="password2">Repeat Password</label>
+                <input type="password" name="password2" required placeholder="" value="{{data_user.password}}" id="password2">
+                
+            </div> -->
+            <div class="save-button">
+                <input type="submit" value="Save">
+            </div>
+
+        </form>
+
+        <form action="/change_password" method="post">
+            {% csrf_token %}
+            <h2>Change Password</h2>
+
+            {% for i in messages %}
+            <div class="warning">
+                <p>{{i}}</p>
+            </div>
+            {% endfor %}
+
+
+            <div class="inputBox">
+                <label for="old_password">Current Password</label>
+                <input type="password" name="old_password">
+            </div>
+
+            <div class="inputBox">
+
+                <label for="new_password">New Password</label>
+                <input type="password" name="new_password">
+            </div>
+
+            <div class="inputBox">
+
+                <label for="new_password2">Repeat New Password</label>
+                <input type="password" name="new_password2">
+            </div>
+
+            <div class="change-password-button">
+                <input type="submit" value="Change Password">
+            </div>
+
+
+
+        </form>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock %}

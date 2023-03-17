@@ -7,6 +7,7 @@ const myInput = document.getElementById("search_key");
 const myLink = document.getElementById("search_pointer");
 const myForm = document.getElementById("search-form");
 const myHome = document.getElementById("home_link");
+const save_btn = document.getElementById("save-btn")
 
 myLink.addEventListener("click", function() {
   const textValue = myInput.value;
@@ -14,7 +15,7 @@ myLink.addEventListener("click", function() {
   if (textValue.length > 0){
     myLink.href += textValue ;
   }else{
-    myLink.href = myHome;
+    myLink.href = '';
   }
   
   
@@ -34,4 +35,16 @@ function previewImage(event) {
     preview.src = reader.result; // mengganti gambar dengan gambar yang diunggah
   }
   reader.readAsDataURL(event.target.files[0]); // membaca file gambar yang diunggah
+  save_btn.hidden = false
+}
+
+
+function previewImage2(event) {
+  var reader = new FileReader(); // membuat objek FileReader
+  reader.onload = function() {
+    var preview = document.getElementById('image-profile');
+    preview.src = reader.result; // mengganti gambar dengan gambar yang diunggah
+  }
+  reader.readAsDataURL(event.target.files[0]); // membaca file gambar yang diunggah
+  save_btn.hidden = false
 }

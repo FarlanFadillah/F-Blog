@@ -31,7 +31,7 @@
                     <i class="fa fa-upload"></i> Choose Photo
                 </label>
                 <input type="file" id="image-upload" name="image" onchange="previewImage(event)">
-                <input type="submit" value="Save" class="upload-btn">
+                <input hidden type="submit" value="Save" class="upload-btn" id="save-btn">
             </div>
         </form>
         {% else %}
@@ -45,7 +45,7 @@
                 {% endif %}
             {% else %}
             <img id="image-preview" src="{{MEDIA_URL}}/images/default/default-profile.jpg">
-            {% if already_follow %}
+                {% if already_follow %}
                 <a style="background-color: white;" href="/follow/{{datauser.id}}">Berhenti Mengikuti</a>
                 {% else %}
                 <a style="background-color: blue;" href="/follow/{{datauser.id}}">Ikuti</a>
@@ -56,7 +56,7 @@
         {% endif %}
         <div class="profile-info">
             {% if is_login %}
-            <h1>Profil Anda</h1>
+            <h1>Profil Anda <a href="/setting">&emsp; edit</a></h1>  
             {% else %}
             <h1>Profil Penulis</h1>
             {% endif %}
@@ -70,7 +70,7 @@
         </div>
     </div>
     <section class="profile_section">
-        <h2>Postingan Teratas</h2>
+        <h2>Postingan Terbaru</h2>
         {% for content in contents %}
         <!-- <article class="profile_content">
             <h3>{{content.title}}</h3>
@@ -79,14 +79,31 @@
             <a href="#">Baca selengkapnya...</a>
         </article> -->
         <div class="content-box">
-            <h2>{{content.title}}</h2>
+            {% if is_login %}
+            <h5>{{content.date}} 
+                <a href="/edit/{{content.content_id}}"><i class="fa-regular fa-pen-to-square"></i></a></h5>
+            {% else %}
             <h5>{{content.date}}</h5>
+            {% endif %}
+            <h2>{{content.title}}</h2>
+            
             <pre class="mypree">{{content.content}}</pre>
 
+
+            {% if is_login %}
             <div class="comment-btn">
                 <a href="/content/{{content.name}}/{{content.content_id}}" type="submit"
-                    class='content-name'>Komentar</a>
+                    class='content-name'><i class="fa-solid fa-comments"></i> Komentar</a>
+                <a href="/delete/{{content.content_id}}" onclick="return confirm('Are you sure you want to delete this content?')"><i class="fa-regular fa-trash-can"></i></a>
             </div>
+            {% else %}
+            <div class="comment-btn">
+                <a href="/content/{{content.name}}/{{content.content_id}}" type="submit"
+                    class='content-name'><i class="fa-solid fa-comments"></i> Komentar</a>
+            </div>
+            {% endif %}
+
+
         </div>
 
         {% empty %}

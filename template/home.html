@@ -24,7 +24,7 @@
   <form id="search-form"> 
     {% csrf_token %}
     <label for="search_key"><a href="/search/" id="search_pointer"><i class="fa-solid fa-magnifying-glass"></i></a></label>
-    <input type="text" name="search_key" id="search_key">
+    <input type="text" name="search_key" id="search_key" placeholder="Find a friends..">
   </form>
 
 </div>
@@ -48,16 +48,22 @@
     <div class="content-box">
       <div class="user">
         <img id="home-image-preview" src="{{MEDIA_URL}}/images/{{content.image}}">
-        <a href="/profile/{{content.name}}" class='content-name'>{{content.first_name}} {{content.last_name}}</a>
+        <div class="home-content-user">
+          <a href="/profile/{{content.name}}" class='content-name'>{{content.first_name}} {{content.last_name}}</a>
+        <h5>{{content.date}}</h5>
+        </div>
+        
       </div>
 
-
+      
       <h2>{{content.title}}</h2>
-      <h5>{{content.date}}</h5>
+      
       <pre class="mypree">{{content.content}}</pre>
       <br>
       <div class="comment-btn">
-        <a href="/content/{{content.name}}/{{content.content_id}}" type="submit" class='content-name'>Komentar</a>
+        <a href="/content/{{content.name}}/{{content.content_id}}" type="submit" class='comment_pointer'>
+          <i class="fa-solid fa-comments"> 
+            </i> Komentar</a>
       </div>
 
 

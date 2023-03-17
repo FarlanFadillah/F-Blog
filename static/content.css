@@ -47,11 +47,17 @@
     border-radius: var(--rad) 0px var(--rad) 10px;
 }
 
+.user .comment-user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 15px;
+}
+
 .comment-box h2 {
     text-transform: capitalize;
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 10px;
 }
 
 .comment-box #content-image-preview{
@@ -100,6 +106,8 @@
 
 #post_submit{
     margin-bottom: 5px;
+    font-family: 'Sono', sans-serif;
+    font-size: 18px;
 }
 
 .container-content section {

@@ -14,5 +14,9 @@ urlpatterns = [
     path('comment/<str:username>/<str:id>', views.comment, name='comment'),
     path('search/<str:keyword>', views.search, name='search'),
     path('follow/<str:followed_id>', views.follow, name='follow'),
+    path('edit/<str:content_id>', views.edit, name='edit'),
+    path('delete/<str:content_id>', views.delete, name='delete'),
+    path('setting', views.setting, name='setting'),
+    path('change_password', views.change_password, name='change_password'),
 
 ]

@@ -23,6 +23,12 @@ main {
     align-items: center;
 }
 
+.user .home-content-user{
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+}
+
 .user #home-image-preview{
     border-radius: 50%;
     object-fit: cover;
@@ -90,6 +96,11 @@ main {
 
 .content-box .user p{
     color: black;
+}
+
+.comment-btn a{
+    font-size: 18px;
+    text-transform: capitalize;
 }
 
  

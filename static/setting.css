@@ -1,0 +1,79 @@
+.data-profile form{
+    margin-bottom: 50px;
+}
+
+.data-profile form input[type=submit]{
+    font-family: 'Sono', sans-serif;
+    font-weight: 900;
+}
+
+
+.data-user{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 50px;
+    padding-right: 300px;
+    padding-left: 150px;
+}
+.inputBox{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: first baseline;
+}
+
+.inputBox input{
+    padding: 5px;
+    font-family: 'Sono', sans-serif;
+    height: 35px;
+    width: 200px;
+    border-radius: 10px;
+    margin-left: 15px;
+    background-color: #bff3e7;
+    font-size: 18px;
+    color: gray;
+}
+
+.inputBox input:focus{
+    color: black;
+}
+
+#image-profile {
+    border-radius: 50%;
+    object-fit: cover;
+    width:300px;
+    height: 300px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+
+.save-button input{
+    border-radius: 15px;
+    margin-top: 10px;
+    width: 100px;
+    height: auto;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.save-button input:hover{
+    opacity: 0.7;
+}
+
+.foto-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.change-password-button input{
+    margin-top: 10px;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+
